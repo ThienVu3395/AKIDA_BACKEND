@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AKIDAModelStoreContainer" CdmEntityContainer="AKIDAEntities">
+    <EntitySetMapping Name="Category_Info">
+      <EntityTypeMapping TypeName="AKIDAModel.Category_Info">
+        <MappingFragment StoreEntitySet="Category_Info">
+          <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Created_Time" ColumnName="Created_Time" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Video_Info">
+      <EntityTypeMapping TypeName="AKIDAModel.Video_Info">
+        <MappingFragment StoreEntitySet="Video_Info">
+          <ScalarProperty Name="ID_Videos" ColumnName="ID_Videos" />
+          <ScalarProperty Name="Main_Link_ID" ColumnName="Main_Link_ID" />
+          <ScalarProperty Name="Number_Of_Video" ColumnName="Number_Of_Video" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="AKIDAModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="AKIDAModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="AKIDAModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="AKIDAModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AKIDAModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="AKIDAModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AKIDAModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="AKIDAModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="AKIDAModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="AKIDAModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+          <ScalarProperty Name="Allowed_Actions" ColumnName="Allowed_Actions" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="AKIDAModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="AKIDAModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="ID_Alias" ColumnName="ID_Alias" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="AKIDAModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AKIDA_Number" ColumnName="AKIDA_Number" />
+          <ScalarProperty Name="Created_Time" ColumnName="Created_Time" />
+          <ScalarProperty Name="Activated" ColumnName="Activated" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Video_Detail">
+      <EntityTypeMapping TypeName="AKIDAModel.Video_Detail">
+        <MappingFragment StoreEntitySet="Video_Detail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Video_Number" ColumnName="Video_Number" />
+          <ScalarProperty Name="Sub_Link" ColumnName="Sub_Link" />
+          <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+          <ScalarProperty Name="Main_Link" ColumnName="Main_Link" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Managements">
+      <EntityTypeMapping TypeName="AKIDAModel.Management">
+        <MappingFragment StoreEntitySet="Management">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Cost_Aki" ColumnName="Cost_Aki" />
+          <ScalarProperty Name="Video_Info_ID" ColumnName="Video_Info_ID" />
+          <ScalarProperty Name="Number_Of_Participants" ColumnName="Number_Of_Participants" />
+          <ScalarProperty Name="Short_Description" ColumnName="Short_Description" />
+          <ScalarProperty Name="Created_Time" ColumnName="Created_Time" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

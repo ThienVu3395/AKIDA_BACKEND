@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AKIDAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category_Info">
+    <Key>
+      <PropertyRef Name="ID_Category" />
+    </Key>
+    <Property Name="ID_Category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Created_Time" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Enabled" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Management">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Category_ID" Type="int" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Created_Time" Type="datetime" Nullable="false" />
+    <Property Name="Short_Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Number_Of_Participants" Type="int" Nullable="false" />
+    <Property Name="Video_Info_ID" Type="int" Nullable="false" />
+    <Property Name="Cost_Aki" Type="int" Nullable="false" />
+    <Property Name="Enabled" Type="int" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID_Role" />
+    </Key>
+    <Property Name="ID_Role" Type="int" Nullable="false" />
+    <Property Name="Created_On" Type="datetime" Nullable="false" />
+    <Property Name="Allowed_Actions" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Role_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="User_ID" />
+      <PropertyRef Name="Role_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="Role_ID" Type="int" Nullable="false" />
+    <Property Name="ID_Alias" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activated" Type="int" Nullable="false" />
+    <Property Name="Created_Time" Type="datetime" Nullable="false" />
+    <Property Name="AKIDA_Number" Type="int" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Video_Detail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Main_Link" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="Chapter" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Sub_Link" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Video_Number" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Video_Info">
+    <Key>
+      <PropertyRef Name="ID_Videos" />
+    </Key>
+    <Property Name="ID_Videos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Main_Link_ID" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="Number_Of_Video" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_management">
+    <End Role="Category_Info" Type="Self.Category_Info" Multiplicity="1" />
+    <End Role="Management" Type="Self.Management" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category_Info">
+        <PropertyRef Name="ID_Category" />
+      </Principal>
+      <Dependent Role="Management">
+        <PropertyRef Name="Category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleUser">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsesRole">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID_Role" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideMana">
+    <End Role="Video_Info" Type="Self.Video_Info" Multiplicity="1" />
+    <End Role="Management" Type="Self.Management" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video_Info">
+        <PropertyRef Name="ID_Videos" />
+      </Principal>
+      <Dependent Role="Management">
+        <PropertyRef Name="Video_Info_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="AKIDAModelStoreContainer">
+    <EntitySet Name="Category_Info" EntityType="Self.Category_Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Management" EntityType="Self.Management" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Video_Detail" EntityType="Self.Video_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Video_Info" EntityType="Self.Video_Info" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_management" Association="Self.FK_management">
+      <End Role="Category_Info" EntitySet="Category_Info" />
+      <End Role="Management" EntitySet="Management" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleUser" Association="Self.FK_RoleUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsesRole" Association="Self.FK_UsesRole">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideMana" Association="Self.FK_VideMana">
+      <End Role="Video_Info" EntitySet="Video_Info" />
+      <End Role="Management" EntitySet="Management" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
